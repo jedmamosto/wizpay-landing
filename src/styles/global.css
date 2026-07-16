@@ -20,4 +20,36 @@
   body {
     @apply bg-brand-dark text-brand-mint font-sans;
   }
+
+  /* Custom scrollbar styling */
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-brand-borderGreen) transparent;
+  }
+
+  /* Webkit browsers (Chrome, Safari, Edge, Opera) */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-brand-borderGreen);
+    border-radius: 9999px;
+    border: 3px solid var(--color-brand-darkBg);
+    transition: background 0.2s ease-in-out;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-brand-emerald);
+  }
+
+  ::-webkit-scrollbar-thumb:active {
+    background: var(--color-brand-neonMint);
+  }
 }
