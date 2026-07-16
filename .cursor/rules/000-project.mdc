@@ -1,0 +1,5 @@
+description: Global workspace instructions. Applies to all files.
+globs: "*"
+alwaysApply: true
+
+Strictly adhere to the core guidelines and execution boundaries defined in ./AGENTS.md at the root of this project.

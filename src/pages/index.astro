@@ -1,17 +1,202 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import InteractiveSandbox from '../components/InteractiveSandbox.astro';
+import FAQ from '../components/FAQ.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout 
+  title="WizPay - Direct PH Storefront Checkout Engine" 
+  description="Accept GCash, Maya, and credit cards with 0% extra transaction fees. Self-hostable and AI-configurable."
+>
+  <!-- Announcement Bar -->
+  <div class="w-full bg-brand-deepGreen border-b border-brand-borderGreen/80 py-2.5 px-4 text-center">
+    <p class="text-xs font-mono tracking-wider uppercase text-[#c5c9b1] flex items-center justify-center gap-1.5 flex-wrap">
+      <span class="inline-block w-2.5 h-2.5 rounded-full bg-brand-emerald animate-pulse"></span>
+      <span>Demo and Simulation Environment Only. No real money transactions.</span>
+    </p>
+  </div>
+
+  <!-- Primary Header -->
+  <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between border-b border-brand-borderGreen/50">
+    <div class="flex items-center gap-3">
+      <div class="h-9 w-9 rounded-lg bg-gradient-to-tr from-brand-emerald to-brand-neonMint p-[2px] shrink-0">
+        <div class="h-full w-full bg-[#00180c] rounded-[6px] flex items-center justify-center">
+          <span class="text-white font-black text-lg tracking-tighter">Oz</span>
+        </div>
+      </div>
+      <span class="text-xl font-black uppercase text-white tracking-widest hidden min-[400px]:inline">WizPay</span>
+    </div>
+    
+    <div class="flex items-center gap-2 sm:gap-4">
+      <a href="http://localhost:3000" class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#c5c9b1] hover:text-white transition-colors duration-300 rounded px-2.5 py-1.5 whitespace-nowrap">
+        Sign In
+      </a>
+      <a href="https://github.com/jedmamosto/open-wizpay" target="_blank" rel="noopener noreferrer" class="shrink-0">
+        <button class="bg-brand-emerald hover:bg-brand-emeraldHover text-brand-dark font-bold text-[10px] sm:text-xs uppercase tracking-wider px-3 py-2 sm:px-5 sm:py-2.5 rounded-md transition-all duration-300 shadow-[0_4px_12px_rgba(204,241,90,0.15)]">
+          GitHub / Deploy
+        </button>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero with Sandbox Slot -->
+  <Hero>
+    <InteractiveSandbox slot="sandbox" />
+  </Hero>
+
+  <!-- Fee Comparison Grid -->
+  <section class="bg-brand-deepGreen/40 border-y border-brand-borderGreen py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+        <span class="inline-block px-3 py-1 text-xs font-semibold text-brand-dark bg-brand-emerald rounded-full uppercase tracking-wider">
+          Fee Comparison
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-black uppercase text-white tracking-tight leading-none mt-2">
+          Pay Processing Fees Only
+        </h2>
+        <p class="text-brand-mint text-sm sm:text-base">
+          Standard hosted platforms add extra commission margins on top of the processor rates. WizPay removes the middleman completely.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Aggregator Card -->
+        <div class="border border-[#ffb4ab]/20 rounded-xl bg-brand-dark p-8 space-y-6 hover:border-[#ffb4ab]/40 transition-all duration-300">
+          <h3 class="text-xl font-black uppercase text-white tracking-wider flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#ffb4ab]"></span>
+            Aggregator Platforms
+          </h3>
+          <ul class="space-y-4 text-sm text-[#c5c9b1]">
+            <li class="flex items-start gap-3">
+              <span class="text-[#ffb4ab] font-bold mt-0.5">✘</span>
+              <span><strong>Extra Transaction Fees:</strong> Standard platforms take a percentage cut of every order you sell.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-[#ffb4ab] font-bold mt-0.5">✘</span>
+              <span><strong>Payout Delays:</strong> Funds are held by intermediary accounts for days before transferring to your bank.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-[#ffb4ab] font-bold mt-0.5">✘</span>
+              <span><strong>Forced Redirects:</strong> Customers are redirected to third-party domains, increasing cart abandonment.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- WizPay Card -->
+        <div class="border border-brand-neonMint/30 rounded-xl bg-brand-lightGreen p-8 space-y-6 hover:border-brand-neonMint/60 transition-all duration-300 shadow-[0_0_30px_rgba(109,254,156,0.02)]">
+          <h3 class="text-xl font-black uppercase text-white tracking-wider flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-brand-neonMint"></span>
+            WizPay Framework
+          </h3>
+          <ul class="space-y-4 text-sm text-[#c5c9b1]">
+            <li class="flex items-start gap-3">
+              <span class="text-brand-neonMint font-bold mt-0.5">✓</span>
+              <span><strong>0% Extra Markup:</strong> You only pay PayMongo's standard credit card/GCash gateway fees directly.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-brand-neonMint font-bold mt-0.5">✓</span>
+              <span><strong>Instant Processing:</strong> Payments clear straight into your linked PayMongo balance without middlemen holds.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-brand-neonMint font-bold mt-0.5">✓</span>
+              <span><strong>Embedded Checkout:</strong> The checkout form is shown directly on your website, providing a smooth user flow.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Onboarding Prompt Section -->
+  <section id="ai-onboarding" class="bg-brand-deepGreen/20 border-t border-brand-borderGreen py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="border border-brand-borderGreen rounded-2xl bg-brand-lightGreen/50 p-6 sm:p-10 space-y-8 shadow-lg max-w-3xl mx-auto">
+        <div class="space-y-3 text-center sm:text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-emerald/30 bg-brand-emerald/5 text-brand-emerald text-xs font-mono uppercase tracking-wider">
+            <span>✦ Conversational Commerce</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black uppercase text-white tracking-tight">
+            Conversational Checkout Setup
+          </h2>
+          <p class="text-sm text-brand-mint leading-relaxed">
+            If you want to use WizPay but don't have developer skills, you can have your favorite AI assistant (like Cursor, Claude Desktop, or Antigravity) configure everything for you. WizPay supports the **Model Context Protocol (MCP)**, allowing your AI assistant to directly create, update, and deploy checkout forms on your behalf.
+          </p>
+        </div>
+
+        <!-- Conversational Prompt Box -->
+        <div class="border border-brand-borderGreen rounded-xl bg-brand-dark p-5 font-mono text-xs text-[#c5c9b1] leading-relaxed relative">
+          <p class="text-[#a6d0b5]/50 mb-3">// Copy this prompt and paste it to your AI assistant</p>
+          <p class="text-white select-all" id="prompt-text">
+            "I want to use WizPay (an open-source Philippine payment system, hosted at https://github.com/jedmamosto/open-wizpay) to accept GCash and Maya payments on my online shop. I do not know how to code, but I want to connect you to WizPay using the Model Context Protocol (MCP) so you can configure checkouts for me. The auto-installer command is `npx @jedmamosto/wizpay-mcp-setup`. Please read the repository documentation (if you have web search enabled) and explain in simple steps how I can run this setup on my computer, and how you will then create and customize payment forms for me once connected."
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+          <button
+            id="copy-prompt-btn"
+            class="w-full sm:w-auto bg-brand-emerald hover:bg-brand-emeraldHover text-brand-dark font-bold text-xs uppercase tracking-wider py-4 px-8 rounded-lg transition-all focus:outline-none"
+          >
+            Copy Onboarding Prompt
+          </button>
+          <span class="text-[10px] font-mono text-brand-mint/70 uppercase tracking-widest text-center sm:text-right">
+            Connects directly to your AI Assistant via MCP
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion -->
+  <FAQ />
+
+  <!-- Exit Intent Call to Action -->
+  <section class="border-t border-brand-borderGreen py-16 md:py-24 text-center space-y-8 bg-brand-dark">
+    <div class="max-w-2xl mx-auto px-4 space-y-4">
+      <h2 class="text-3xl sm:text-5xl font-black uppercase text-white tracking-tight leading-none">
+        Ready to Take Control of Your Payments?
+      </h2>
+      <p class="text-brand-mint text-sm sm:text-base leading-relaxed max-w-lg mx-auto">
+        Stop giving away transaction cuts to third-party platforms. Link your credentials, retain 100% of your earnings, and deploy checkout buttons instantly.
+      </p>
+    </div>
+
+    <div class="pt-2">
+      <a href="https://github.com/jedmamosto/open-wizpay" target="_blank" rel="noopener noreferrer">
+        <button class="bg-brand-emerald hover:bg-brand-emeraldHover text-brand-dark text-sm font-bold uppercase tracking-wider h-auto py-4 px-10 rounded-lg transition-all shadow-[0_4px_20px_rgba(204,241,90,0.15)]">
+          Get Started on GitHub
+        </button>
+      </a>
+    </div>
+    <p class="text-[10px] font-mono uppercase tracking-widest text-brand-mint font-medium">
+      Open-Source. Direct Integration. Secure.
+    </p>
+  </section>
+
+  <!-- Global Footer -->
+  <footer class="border-t border-brand-borderGreen bg-brand-dark/50 py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-brand-mint">
+      <p>&copy; {new Date().getFullYear()} WizPay. All rights reserved.</p>
+      <div class="flex gap-6">
+        <span class="hover:text-white cursor-pointer">[Terms of Service]</span>
+        <span class="hover:text-white cursor-pointer">[Privacy Policy]</span>
+        <a href="https://github.com/jedmamosto/open-wizpay" target="_blank" rel="noopener noreferrer" class="hover:text-white">[GitHub Repository]</a>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+<script>
+  const copyBtn = document.getElementById('copy-prompt-btn');
+  const promptText = document.getElementById('prompt-text');
+
+  if (copyBtn && promptText) {
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(promptText.textContent.trim());
+      copyBtn.textContent = 'Copied Prompt to Clipboard!';
+      setTimeout(() => {
+        copyBtn.textContent = 'Copy Onboarding Prompt';
+      }, 2000);
+    });
+  }
+</script>

@@ -1,6 +1,20 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-brand-dark: #001208;
+  --color-brand-deepGreen: #022113;
+  --color-brand-emerald: #ccf15a;
+  --color-brand-emeraldHover: #b0d440;
+  --color-brand-emeraldText: #161e00;
+  --color-brand-mint: #a6d0b5;
+  --color-brand-neonMint: #6dfe9c;
+  --color-brand-borderGreen: #112f21;
+  --color-brand-lightGreen: #062517;
+  --color-brand-darkBg: #00180c;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'Fira Code', 'Courier New', monospace;
+}
 
 @layer base {
   body {
