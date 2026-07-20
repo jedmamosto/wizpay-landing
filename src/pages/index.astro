@@ -30,8 +30,21 @@ import FAQ from '../components/FAQ.astro';
     
     <div class="flex items-center gap-2 sm:gap-4">
       <a href="https://github.com/jedmamosto/open-wizpay" target="_blank" rel="noopener noreferrer" class="shrink-0">
-        <button class="bg-brand-emerald hover:bg-brand-emeraldHover text-brand-dark font-bold text-[10px] sm:text-xs uppercase tracking-wider px-3 py-2 sm:px-5 sm:py-2.5 rounded-md transition-all duration-300 shadow-[0_4px_12px_rgba(204,241,90,0.15)]">
-          GitHub / Deploy
+        <button class="bg-transparent border border-brand-borderGreen hover:bg-brand-lightGreen text-[#c5c9b1] hover:text-white font-bold text-[10px] sm:text-xs uppercase tracking-wider px-3 py-2 sm:px-5 sm:py-2.5 rounded-md transition-all duration-300">
+          GitHub Repository
+        </button>
+      </a>
+      <a 
+        href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjedmamosto%2Fopen-wizpay&env=NEXT_PUBLIC_FIREBASE_API_KEY,NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,NEXT_PUBLIC_FIREBASE_PROJECT_ID,NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,NEXT_PUBLIC_FIREBASE_APP_ID,NEXT_PRIVATE_FIREBASE_CLIENT_EMAIL,NEXT_PRIVATE_FIREBASE_PRIVATE_KEY,PAYMONGO_PUBLIC_KEY,PAYMONGO_SECRET_KEY,PAYMONGO_WEBHOOK_SECRET,ADMIN_EMAIL,ADMIN_PASSWORD,SESSION_SECRET&root-directory=packages/web-app"
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="shrink-0"
+      >
+        <button class="bg-brand-emerald hover:bg-brand-emeraldHover text-brand-dark font-bold text-[10px] sm:text-xs uppercase tracking-wider px-3 py-2 sm:px-5 sm:py-2.5 rounded-md transition-all duration-300 shadow-[0_4px_12px_rgba(204,241,90,0.15)] flex items-center gap-1.5">
+          <svg class="h-2.5 w-2.5 fill-current" viewBox="0 0 116 100">
+            <path d="M57.5 0L115 100H0L57.5 0Z"/>
+          </svg>
+          Deploy to Vercel
         </button>
       </a>
     </div>
@@ -125,8 +138,87 @@ import FAQ from '../components/FAQ.astro';
         <div class="border border-brand-borderGreen rounded-xl bg-brand-dark p-5 font-mono text-xs text-[#c5c9b1] leading-relaxed relative">
           <p class="text-[#a6d0b5]/50 mb-3">// Copy this prompt and paste it to your AI assistant</p>
           <p class="text-white select-all" id="prompt-text">
-            "I want to use WizPay (an open-source Philippine payment system, hosted at https://github.com/jedmamosto/open-wizpay) to accept GCash and Maya payments on my online shop. I do not know how to code, but I want to connect you to WizPay using the Model Context Protocol (MCP) so you can configure checkouts for me. The auto-installer command is `npx @jedmamosto/wizpay-mcp-setup`. Please read the repository documentation (if you have web search enabled) and explain in simple steps how I can run this setup on my computer, and how you will then create and customize payment forms for me once connected."
+            "I want to set up WizPay (https://github.com/jedmamosto/open-wizpay) — an open-source Philippine checkout engine — so I can accept GCash and Maya payments from my customers via a sharable payment link or embeddable widget on my website.
+
+Before you run any commands, ask me for each of the following credentials one at a time, and guide me on exactly where to find or create them if I don't have them yet:
+
+1. Firebase Project: I need a Firebase project with Firestore enabled. If I don't have one, walk me through creating it at https://console.firebase.google.com and generating a Service Account private key from Project Settings → Service Accounts.
+2. PayMongo Keys: I need my PayMongo Public Key and Secret Key. If I don't have a PayMongo account, guide me to sign up at https://dashboard.paymongo.com and locate my API keys under Developers → API Keys. Ask me whether I want to use Test or Live keys.
+3. Admin Credentials: I need to choose an admin email and password for the WizPay dashboard.
+
+Once I have confirmed all credentials, you should:
+A. Clone the repository and configure `packages/web-app/.env.local` with my answers.
+B. Run `npm install` and link the AI assistant via `npx @jedmamosto/wizpay-mcp-setup`.
+C. Start the server with `npm run dev:web` and verify the dashboard is live at http://localhost:3000.
+D. Use the WizPay MCP tools to create my first checkout form with at least one product (minimum price PHP 20.00) and give me the shareable payment link.
+E. Deploy to Vercel using the one-click deploy link or by running `npx vercel --prod --yes`, and ensure all environment variables are copied to the Vercel dashboard so my payment form and webhooks work on the live URL.
+
+Do not skip any step or assume I have anything set up. Ask me before you act."
           </p>
+        </div>
+
+        <!-- Step-by-Step Developer Guide -->
+        <div class="border border-brand-borderGreen/80 rounded-xl bg-brand-dark p-6 space-y-4">
+          <h3 class="text-sm font-black uppercase text-brand-emerald tracking-wider font-mono">
+            // Step-by-Step Developer Guide
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs leading-relaxed text-[#c5c9b1]">
+            <div class="space-y-2">
+              <p class="font-bold text-white uppercase tracking-wider text-[11px] font-mono">1. Configure Firestore Credentials</p>
+              <p>Configure your Firebase project credentials directly in <code class="text-brand-neonMint font-mono bg-[#052214] px-1 py-0.5 rounded">packages/web-app/.env.local</code>:</p>
+              <ul class="list-disc pl-4 space-y-1 text-[#a6d0b5]">
+                <li>Add your public Firebase keys (API Key, Auth Domain, Project ID, App ID).</li>
+                <li>Provide your <code class="font-mono text-white text-[10px]">FIREBASE_SERVICE_ACCOUNT_KEY</code> as a JSON string to authenticate Firestore Admin.</li>
+              </ul>
+            </div>
+            <div class="space-y-2">
+              <p class="font-bold text-white uppercase tracking-wider text-[11px] font-mono">2. Start Web Server</p>
+              <p>Install project dependencies and start the Next.js local server:</p>
+              <pre class="bg-[#052214] text-[#a6d0b5] p-2 rounded font-mono text-[10px] overflow-x-auto">npm install &amp;&amp; npm run dev:web</pre>
+              <p class="text-[10px] text-brand-mint/70">The server runs on <code class="font-mono text-white">http://127.0.0.1:3000</code>.</p>
+            </div>
+            <div class="space-y-2">
+              <p class="font-bold text-white uppercase tracking-wider text-[11px] font-mono">3. Link AI Client via MCP</p>
+              <p>Run the interactive installer script to configure your AI assistant (Cursor, Claude Desktop, Antigravity, etc.):</p>
+              <pre class="bg-[#052214] text-[#a6d0b5] p-2 rounded font-mono text-[10px] overflow-x-auto">npx @jedmamosto/wizpay-mcp-setup</pre>
+              <p class="text-[10px] text-brand-mint/70">Alternately, run <code class="font-mono text-white">npm run setup</code> in the MCP server package directory.</p>
+            </div>
+            <div class="space-y-2">
+              <p class="font-bold text-white uppercase tracking-wider text-[11px] font-mono">4. Restart &amp; Interact</p>
+              <p>Restart your AI assistant to load the new tools, then prompt it directly to deploy to production:</p>
+              <blockquote class="border-l-2 border-brand-emerald pl-2 italic text-white font-mono">
+                "Deploy my payment gateway to Vercel"
+              </blockquote>
+              <p class="text-[10px] text-brand-mint/70">Once deployed, webhooks will trigger instantly when live GCash/Maya payments clear.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Deploy Options -->
+        <div class="border border-brand-borderGreen rounded-xl bg-brand-lightGreen p-6 space-y-4">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <h3 class="text-sm font-black uppercase text-white tracking-wider font-mono">
+                🚀 One-Click Cloud Deployment
+              </h3>
+              <p class="text-xs text-[#a6d0b5] mt-1 leading-normal">
+                Want to skip local setup completely? Deploy a public instance of WizPay to Vercel instantly. You will be prompted to enter your Firebase and PayMongo credentials in a secure web form.
+              </p>
+            </div>
+            <a 
+              href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjedmamosto%2Fopen-wizpay&env=NEXT_PUBLIC_FIREBASE_API_KEY,NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,NEXT_PUBLIC_FIREBASE_PROJECT_ID,NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,NEXT_PUBLIC_FIREBASE_APP_ID,NEXT_PRIVATE_FIREBASE_CLIENT_EMAIL,NEXT_PRIVATE_FIREBASE_PRIVATE_KEY,PAYMONGO_PUBLIC_KEY,PAYMONGO_SECRET_KEY,PAYMONGO_WEBHOOK_SECRET,ADMIN_EMAIL,ADMIN_PASSWORD,SESSION_SECRET&root-directory=packages/web-app"
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="w-full sm:w-auto shrink-0"
+            >
+              <button class="w-full sm:w-auto bg-[#ffffff] hover:bg-[#e2e2e2] text-[#000000] font-bold text-xs uppercase tracking-wider py-3.5 px-6 rounded-lg transition-all flex items-center justify-center gap-2">
+                <svg class="h-3 w-3 fill-current" viewBox="0 0 116 100">
+                  <path d="M57.5 0L115 100H0L57.5 0Z"/>
+                </svg>
+                Deploy to Vercel
+              </button>
+            </a>
+          </div>
         </div>
 
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
